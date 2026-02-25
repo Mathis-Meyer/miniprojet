@@ -27,10 +27,10 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
 
         <dependency>
             <!-- JPA -->
@@ -93,11 +93,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- Pour produire du XML -->
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
@@ -136,6 +132,10 @@
             <artifactId>guava</artifactId>
             <version>33.4.8-jre</version> <!-- Use the latest version available -->
         </dependency>
+        <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+    </dependency>
     </dependencies>
 
     <build>

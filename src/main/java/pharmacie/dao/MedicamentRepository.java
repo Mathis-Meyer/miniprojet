@@ -69,4 +69,9 @@ public interface MedicamentRepository extends JpaRepository<Medicament, Integer>
      """)
     List<Medicament> medicamentsDisponibles();
 
+
+    // Cette phrase magique permet de comparer deux colonnes (Stock vs Niveau d'alerte)
+    @org.springframework.data.jpa.repository.Query("SELECT m FROM Medicament m WHERE m.unitesEnStock < m.niveauDeReappro")
+    java.util.List<pharmacie.entity.Medicament> findMedicamentsACommander();
+
 }
