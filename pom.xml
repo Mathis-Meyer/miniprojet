@@ -26,12 +26,6 @@
     </properties>
 
     <dependencies>
-
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-mail</artifactId>
-</dependency>
-
         <dependency>
             <!-- JPA -->
             <groupId>org.springframework.boot</groupId>
@@ -50,6 +44,11 @@
             <!-- Web services REST -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
+        <dependency>
+            <!-- Email -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
         <!-- Le browser d'API swagger -->
         <dependency>
@@ -132,10 +131,6 @@
             <artifactId>guava</artifactId>
             <version>33.4.8-jre</version> <!-- Use the latest version available -->
         </dependency>
-        <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-mail</artifactId>
-    </dependency>
     </dependencies>
 
     <build>
@@ -161,9 +156,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.2.0</version>
-                <configuration>
-                    <propertiesEncoding>ISO-8859-1</propertiesEncoding>
-                </configuration>
             </plugin>
             <plugin>
                 <!-- Pour télécharger le javadoc des dépendances, exécuter dans un terminal :  -->
