@@ -1,8 +1,9 @@
-package pharmacie.entity; // J'ai adapté ça à ton dossier
+package pharmacie.entity;
 
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType; // <-- AJOUT TRÈS IMPORTANT ICI
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,12 +21,9 @@ public class Fournisseur {
     private String nom;
     private String email;
 
-    @ManyToMany
-    @JoinTable(
-        name = "fournisseur_categorie",
-        joinColumns = @JoinColumn(name = "fournisseur_id"),
-        inverseJoinColumns = @JoinColumn(name = "categorie_id")
-    )
+    // <-- L'AJOUT EST ICI : (fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "fournisseur_categorie", joinColumns = @JoinColumn(name = "fournisseur_id"), inverseJoinColumns = @JoinColumn(name = "categorie_id"))
     private List<Categorie> categories;
 
     // --- Constructeurs ---
@@ -38,15 +36,35 @@ public class Fournisseur {
     }
 
     // --- Getters et Setters ---
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getNom() { return nom; }
-    public void setNom(String nom) { this.nom = nom; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getNom() {
+        return nom;
+    }
 
-    public List<Categorie> getCategories() { return categories; }
-    public void setCategories(List<Categorie> categories) { this.categories = categories; }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Categorie> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Categorie> categories) {
+        this.categories = categories;
+    }
 }
