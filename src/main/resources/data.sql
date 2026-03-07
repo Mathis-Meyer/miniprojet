@@ -18,133 +18,133 @@ ALTER TABLE Categorie ALTER COLUMN code RESTART WITH 11;
 
 -- Catégorie 1: Antalgiques et Antipyrétiques
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Paracétamol 500mg', 1, 'Boîte de 16 comprimés', 2.50, 50, 0, 50, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Paracétamol 1000mg', 1, 'Boîte de 8 comprimés', 3.20, 30, 0, 40, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Ibuprofène 200mg', 1, 'Boîte de 20 comprimés', 3.80, 400, 0, 45, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Ibuprofène 400mg', 1, 'Boîte de 12 comprimés', 4.50, 320, 0, 35, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Aspirine 500mg', 1, 'Boîte de 20 comprimés', 2.90, 450, 0, 50, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Codéine 30mg', 1, 'Boîte de 16 comprimés', 8.90, 150, 0, 20, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Tramadol 50mg', 1, 'Boîte de 20 gélules', 12.50, 180, 0, 25, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Morphine 10mg', 1, 'Boîte de 14 comprimés', 25.80, 80, 0, 15, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Doliprane Effervescent 1g', 1, 'Boîte de 8 comprimés', 3.50, 280, 0, 30, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Efferalgan Vitamine C', 1, 'Boîte de 16 comprimés', 4.20, 220, 0, 25, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400');
+('Paracétamol 500mg', 1, 'Boîte de 16 comprimés', 2.50, 50, 0, 50, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Paracetamol_500mg_pills.jpg/800px-Paracetamol_500mg_pills.jpg'),
+('Paracétamol 1000mg', 1, 'Boîte de 8 comprimés', 3.20, 30, 0, 40, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Ibuprofène 200mg', 1, 'Boîte de 20 comprimés', 3.80, 400, 0, 45, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Ibuprofen_200mg.jpg/800px-Ibuprofen_200mg.jpg'),
+('Ibuprofène 400mg', 1, 'Boîte de 12 comprimés', 4.50, 320, 0, 35, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Aspirine 500mg', 1, 'Boîte de 20 comprimés', 2.90, 450, 0, 50, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Aspirin-Bayer.jpg/800px-Aspirin-Bayer.jpg'),
+('Codéine 30mg', 1, 'Boîte de 16 comprimés', 8.90, 150, 0, 20, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Tramadol 50mg', 1, 'Boîte de 20 gélules', 12.50, 180, 0, 25, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Morphine 10mg', 1, 'Boîte de 14 comprimés', 25.80, 80, 0, 15, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Doliprane Effervescent 1g', 1, 'Boîte de 8 comprimés', 3.50, 280, 0, 30, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Doliprane_1000_mg_boite.jpg/800px-Doliprane_1000_mg_boite.jpg'),
+('Efferalgan Vitamine C', 1, 'Boîte de 16 comprimés', 4.20, 220, 0, 25, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Efferalgan_1000mg.jpg/800px-Efferalgan_1000mg.jpg');
 
 -- Catégorie 2: Anti-inflammatoires
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Diclofénac 50mg', 2, 'Boîte de 20 comprimés', 5.60, 300, 0, 35, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Kétoprofène 100mg', 2, 'Boîte de 12 gélules', 6.80, 250, 0, 30, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Naproxène 550mg', 2, 'Boîte de 16 comprimés', 7.20, 200, 0, 25, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Célécoxib 200mg', 2, 'Boîte de 30 gélules', 15.90, 180, 0, 20, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Indométacine 25mg', 2, 'Boîte de 30 gélules', 8.50, 150, 0, 20, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Piroxicam 20mg', 2, 'Boîte de 10 gélules', 9.30, 120, 0, 15, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Méloxicam 15mg', 2, 'Boîte de 14 comprimés', 11.20, 160, 0, 18, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Acéclofénac 100mg', 2, 'Boîte de 20 comprimés', 8.90, 140, 0, 17, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Étodolac 400mg', 2, 'Boîte de 14 comprimés', 12.50, 110, 0, 15, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Flurbiprofène 100mg', 2, 'Boîte de 30 comprimés', 10.80, 130, 0, 16, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400');
+('Diclofénac 50mg', 2, 'Boîte de 20 comprimés', 5.60, 300, 0, 35, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Kétoprofène 100mg', 2, 'Boîte de 12 gélules', 6.80, 250, 0, 30, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Naproxène 550mg', 2, 'Boîte de 16 comprimés', 7.20, 200, 0, 25, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Célécoxib 200mg', 2, 'Boîte de 30 gélules', 15.90, 180, 0, 20, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Indométacine 25mg', 2, 'Boîte de 30 gélules', 8.50, 150, 0, 20, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Piroxicam 20mg', 2, 'Boîte de 10 gélules', 9.30, 120, 0, 15, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Méloxicam 15mg', 2, 'Boîte de 14 comprimés', 11.20, 160, 0, 18, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Acéclofénac 100mg', 2, 'Boîte de 20 comprimés', 8.90, 140, 0, 17, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Étodolac 400mg', 2, 'Boîte de 14 comprimés', 12.50, 110, 0, 15, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Flurbiprofène 100mg', 2, 'Boîte de 30 comprimés', 10.80, 130, 0, 16, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg');
 
 -- Catégorie 3: Antibiotiques
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Amoxicilline 500mg', 3, 'Boîte de 12 gélules', 5.90, 400, 0, 40, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Amoxicilline + Acide Clavulanique 1g', 3, 'Boîte de 8 comprimés', 8.50, 350, 0, 35, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Azithromycine 250mg', 3, 'Boîte de 6 comprimés', 9.80, 280, 0, 30, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Ciprofloxacine 500mg', 3, 'Boîte de 10 comprimés', 12.30, 220, 0, 25, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Clarithromycine 500mg', 3, 'Boîte de 14 comprimés', 14.60, 180, 0, 20, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Métronidazole 500mg', 3, 'Boîte de 20 comprimés', 6.70, 300, 0, 32, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Doxycycline 100mg', 3, 'Boîte de 15 comprimés', 8.90, 250, 0, 28, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Céfixime 200mg', 3, 'Boîte de 10 comprimés', 11.40, 190, 0, 22, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Lévofloxacine 500mg', 3, 'Boîte de 7 comprimés', 15.80, 160, 0, 18, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Clindamycine 300mg', 3, 'Boîte de 16 gélules', 13.20, 140, 0, 16, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400');
+('Amoxicilline 500mg', 3, 'Boîte de 12 gélules', 5.90, 400, 0, 40, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Amoxicilline + Acide Clavulanique 1g', 3, 'Boîte de 8 comprimés', 8.50, 350, 0, 35, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Azithromycine 250mg', 3, 'Boîte de 6 comprimés', 9.80, 280, 0, 30, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Ciprofloxacine 500mg', 3, 'Boîte de 10 comprimés', 12.30, 220, 0, 25, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Clarithromycine 500mg', 3, 'Boîte de 14 comprimés', 14.60, 180, 0, 20, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Métronidazole 500mg', 3, 'Boîte de 20 comprimés', 6.70, 300, 0, 32, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Doxycycline 100mg', 3, 'Boîte de 15 comprimés', 8.90, 250, 0, 28, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Céfixime 200mg', 3, 'Boîte de 10 comprimés', 11.40, 190, 0, 22, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Lévofloxacine 500mg', 3, 'Boîte de 7 comprimés', 15.80, 160, 0, 18, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Clindamycine 300mg', 3, 'Boîte de 16 gélules', 13.20, 140, 0, 16, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg');
 
 -- Catégorie 4: Antihypertenseurs
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Amlodipine 5mg', 4, 'Boîte de 30 comprimés', 4.80, 450, 0, 45, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Amlodipine 10mg', 4, 'Boîte de 30 comprimés', 6.20, 380, 0, 38, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Losartan 50mg', 4, 'Boîte de 28 comprimés', 8.90, 420, 0, 42, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Ramipril 5mg', 4, 'Boîte de 30 comprimés', 7.50, 350, 0, 35, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Énalapril 10mg', 4, 'Boîte de 28 comprimés', 6.80, 400, 0, 40, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Valsartan 80mg', 4, 'Boîte de 28 comprimés', 9.20, 320, 0, 32, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Candésartan 8mg', 4, 'Boîte de 30 comprimés', 10.50, 280, 0, 28, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Bisoprolol 5mg', 4, 'Boîte de 30 comprimés', 5.90, 380, 0, 38, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Métoprolol 50mg', 4, 'Boîte de 60 comprimés', 8.40, 340, 0, 34, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Hydrochlorothiazide 25mg', 4, 'Boîte de 30 comprimés', 4.20, 420, 0, 42, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400');
+('Amlodipine 5mg', 4, 'Boîte de 30 comprimés', 4.80, 450, 0, 45, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Amlodipine 10mg', 4, 'Boîte de 30 comprimés', 6.20, 380, 0, 38, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Losartan 50mg', 4, 'Boîte de 28 comprimés', 8.90, 420, 0, 42, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Ramipril 5mg', 4, 'Boîte de 30 comprimés', 7.50, 350, 0, 35, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Énalapril 10mg', 4, 'Boîte de 28 comprimés', 6.80, 400, 0, 40, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Valsartan 80mg', 4, 'Boîte de 28 comprimés', 9.20, 320, 0, 32, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Candésartan 8mg', 4, 'Boîte de 30 comprimés', 10.50, 280, 0, 28, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Bisoprolol 5mg', 4, 'Boîte de 30 comprimés', 5.90, 380, 0, 38, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Métoprolol 50mg', 4, 'Boîte de 60 comprimés', 8.40, 340, 0, 34, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Hydrochlorothiazide 25mg', 4, 'Boîte de 30 comprimés', 4.20, 420, 0, 42, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg');
 
 -- Catégorie 5: Antidiabétiques
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Metformine 500mg', 5, 'Boîte de 60 comprimés', 3.50, 500, 0, 50, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Metformine 850mg', 5, 'Boîte de 60 comprimés', 4.80, 450, 0, 45, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Gliclazide 30mg', 5, 'Boîte de 30 comprimés', 6.90, 320, 0, 32, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Glimépiride 2mg', 5, 'Boîte de 30 comprimés', 7.20, 280, 0, 28, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Sitagliptine 100mg', 5, 'Boîte de 28 comprimés', 45.80, 150, 0, 15, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Vildagliptine 50mg', 5, 'Boîte de 56 comprimés', 42.50, 180, 0, 18, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Empagliflozine 10mg', 5, 'Boîte de 30 comprimés', 48.90, 120, 0, 12, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Insuline Rapide', 5, 'Flacon de 10ml', 25.00, 200, 0, 20, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Insuline Lente', 5, 'Flacon de 10ml', 28.50, 180, 0, 18, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Pioglitazone 30mg', 5, 'Boîte de 28 comprimés', 38.60, 100, 0, 10, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400');
+('Metformine 500mg', 5, 'Boîte de 60 comprimés', 3.50, 500, 0, 50, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Metformine 850mg', 5, 'Boîte de 60 comprimés', 4.80, 450, 0, 45, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Gliclazide 30mg', 5, 'Boîte de 30 comprimés', 6.90, 320, 0, 32, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Glimépiride 2mg', 5, 'Boîte de 30 comprimés', 7.20, 280, 0, 28, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Sitagliptine 100mg', 5, 'Boîte de 28 comprimés', 45.80, 150, 0, 15, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Vildagliptine 50mg', 5, 'Boîte de 56 comprimés', 42.50, 180, 0, 18, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Empagliflozine 10mg', 5, 'Boîte de 30 comprimés', 48.90, 120, 0, 12, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Insuline Rapide', 5, 'Flacon de 10ml', 25.00, 200, 0, 20, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Insulin_vial.jpg/800px-Insulin_vial.jpg'),
+('Insuline Lente', 5, 'Flacon de 10ml', 28.50, 180, 0, 18, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Insulin_vial.jpg/800px-Insulin_vial.jpg'),
+('Pioglitazone 30mg', 5, 'Boîte de 28 comprimés', 38.60, 100, 0, 10, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg');
 
 -- Catégorie 6: Antihistaminiques
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Cétirizine 10mg', 6, 'Boîte de 15 comprimés', 3.80, 400, 0, 40, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Loratadine 10mg', 6, 'Boîte de 10 comprimés', 3.20, 380, 0, 38, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Desloratadine 5mg', 6, 'Boîte de 30 comprimés', 5.90, 320, 0, 32, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Lévocétirizine 5mg', 6, 'Boîte de 28 comprimés', 6.40, 280, 0, 28, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Fexofénadine 120mg', 6, 'Boîte de 20 comprimés', 8.50, 250, 0, 25, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Bilastine 20mg', 6, 'Boîte de 30 comprimés', 9.20, 220, 0, 22, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Hydroxyzine 25mg', 6, 'Boîte de 30 comprimés', 4.80, 180, 0, 18, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Diphénhydramine 25mg', 6, 'Boîte de 24 comprimés', 5.20, 200, 0, 20, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Prométhazine 25mg', 6, 'Boîte de 20 comprimés', 6.80, 150, 0, 15, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Rupatadine 10mg', 6, 'Boîte de 30 comprimés', 10.50, 140, 0, 14, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400');
+('Cétirizine 10mg', 6, 'Boîte de 15 comprimés', 3.80, 400, 0, 40, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Loratadine 10mg', 6, 'Boîte de 10 comprimés', 3.20, 380, 0, 38, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Desloratadine 5mg', 6, 'Boîte de 30 comprimés', 5.90, 320, 0, 32, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Lévocétirizine 5mg', 6, 'Boîte de 28 comprimés', 6.40, 280, 0, 28, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Fexofénadine 120mg', 6, 'Boîte de 20 comprimés', 8.50, 250, 0, 25, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Bilastine 20mg', 6, 'Boîte de 30 comprimés', 9.20, 220, 0, 22, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Hydroxyzine 25mg', 6, 'Boîte de 30 comprimés', 4.80, 180, 0, 18, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Diphénhydramine 25mg', 6, 'Boîte de 24 comprimés', 5.20, 200, 0, 20, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Prométhazine 25mg', 6, 'Boîte de 20 comprimés', 6.80, 150, 0, 15, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Rupatadine 10mg', 6, 'Boîte de 30 comprimés', 10.50, 140, 0, 14, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg');
 
 -- Catégorie 7: Vitamines et Compléments
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Vitamine C 1000mg', 7, 'Boîte de 30 comprimés effervescents', 5.90, 500, 0, 50, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Vitamine D3 1000 UI', 7, 'Flacon de 20ml', 8.50, 450, 0, 45, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Complexe Vitamine B', 7, 'Boîte de 60 comprimés', 12.80, 380, 0, 38, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Fer + Acide Folique', 7, 'Boîte de 30 comprimés', 6.90, 320, 0, 32, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Calcium + Vitamine D', 7, 'Boîte de 60 comprimés', 9.50, 400, 0, 40, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Magnésium 300mg', 7, 'Boîte de 30 comprimés', 7.20, 350, 0, 35, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Multivitamines', 7, 'Boîte de 90 comprimés', 15.80, 280, 0, 28, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Oméga 3', 7, 'Boîte de 60 capsules', 18.90, 250, 0, 25, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Zinc 15mg', 7, 'Boîte de 30 comprimés', 6.50, 220, 0, 22, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Sélénium 50mcg', 7, 'Boîte de 30 gélules', 8.90, 180, 0, 18, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400');
+('Vitamine C 1000mg', 7, 'Boîte de 30 comprimés effervescents', 5.90, 500, 0, 50, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Vitamine D3 1000 UI', 7, 'Flacon de 20ml', 8.50, 450, 0, 45, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Cough_syrup.jpg/800px-Cough_syrup.jpg'),
+('Complexe Vitamine B', 7, 'Boîte de 60 comprimés', 12.80, 380, 0, 38, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Fer + Acide Folique', 7, 'Boîte de 30 comprimés', 6.90, 320, 0, 32, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Calcium + Vitamine D', 7, 'Boîte de 60 comprimés', 9.50, 400, 0, 40, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Magnésium 300mg', 7, 'Boîte de 30 comprimés', 7.20, 350, 0, 35, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Multivitamines', 7, 'Boîte de 90 comprimés', 15.80, 280, 0, 28, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Oméga 3', 7, 'Boîte de 60 capsules', 18.90, 250, 0, 25, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Zinc 15mg', 7, 'Boîte de 30 comprimés', 6.50, 220, 0, 22, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Sélénium 50mcg', 7, 'Boîte de 30 gélules', 8.90, 180, 0, 18, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg');
 
 -- Catégorie 8: Médicaments Cardiovasculaires
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Atorvastatine 20mg', 8, 'Boîte de 30 comprimés', 12.50, 400, 0, 40, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Simvastatine 40mg', 8, 'Boîte de 28 comprimés', 10.80, 350, 0, 35, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Rosuvastatine 10mg', 8, 'Boîte de 30 comprimés', 15.20, 320, 0, 32, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Clopidogrel 75mg', 8, 'Boîte de 30 comprimés', 18.90, 280, 0, 28, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Aspirine Cardio 100mg', 8, 'Boîte de 30 comprimés', 3.80, 500, 0, 50, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Digoxine 0.25mg', 8, 'Boîte de 30 comprimés', 5.40, 200, 0, 20, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Furosémide 40mg', 8, 'Boîte de 30 comprimés', 4.20, 380, 0, 38, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Spironolactone 25mg', 8, 'Boîte de 30 comprimés', 6.80, 250, 0, 25, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Ivabradine 5mg', 8, 'Boîte de 56 comprimés', 32.50, 150, 0, 15, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Isosorbide Dinitrate 20mg', 8, 'Boîte de 60 comprimés', 8.90, 220, 0, 22, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400');
+('Atorvastatine 20mg', 8, 'Boîte de 30 comprimés', 12.50, 400, 0, 40, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Simvastatine 40mg', 8, 'Boîte de 28 comprimés', 10.80, 350, 0, 35, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Rosuvastatine 10mg', 8, 'Boîte de 30 comprimés', 15.20, 320, 0, 32, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Clopidogrel 75mg', 8, 'Boîte de 30 comprimés', 18.90, 280, 0, 28, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Aspirine Cardio 100mg', 8, 'Boîte de 30 comprimés', 3.80, 500, 0, 50, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Aspirin-Bayer.jpg/800px-Aspirin-Bayer.jpg'),
+('Digoxine 0.25mg', 8, 'Boîte de 30 comprimés', 5.40, 200, 0, 20, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Furosémide 40mg', 8, 'Boîte de 30 comprimés', 4.20, 380, 0, 38, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Spironolactone 25mg', 8, 'Boîte de 30 comprimés', 6.80, 250, 0, 25, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Ivabradine 5mg', 8, 'Boîte de 56 comprimés', 32.50, 150, 0, 15, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Isosorbide Dinitrate 20mg', 8, 'Boîte de 60 comprimés', 8.90, 220, 0, 22, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg');
 
 -- Catégorie 9: Médicaments Gastro-intestinaux
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Oméprazole 20mg', 9, 'Boîte de 14 gélules', 3.80, 450, 0, 45, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Pantoprazole 40mg', 9, 'Boîte de 28 comprimés', 6.50, 400, 0, 40, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Ésoméprazole 20mg', 9, 'Boîte de 14 comprimés', 5.90, 380, 0, 38, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Ranitidine 150mg', 9, 'Boîte de 24 comprimés', 4.80, 320, 0, 32, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Dompéridone 10mg', 9, 'Boîte de 30 comprimés', 3.50, 350, 0, 35, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Métoclopramide 10mg', 9, 'Boîte de 20 comprimés', 2.90, 300, 0, 30, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Lopéramide 2mg', 9, 'Boîte de 12 gélules', 3.20, 280, 0, 28, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Smecta', 9, 'Boîte de 30 sachets', 4.50, 420, 0, 42, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Lactulose Sirop', 9, 'Flacon de 200ml', 5.80, 250, 0, 25, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Mébévérine 135mg', 9, 'Boîte de 60 comprimés', 8.90, 200, 0, 20, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400');
+('Oméprazole 20mg', 9, 'Boîte de 14 gélules', 3.80, 450, 0, 45, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Pantoprazole 40mg', 9, 'Boîte de 28 comprimés', 6.50, 400, 0, 40, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Ésoméprazole 20mg', 9, 'Boîte de 14 comprimés', 5.90, 380, 0, 38, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Ranitidine 150mg', 9, 'Boîte de 24 comprimés', 4.80, 320, 0, 32, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Dompéridone 10mg', 9, 'Boîte de 30 comprimés', 3.50, 350, 0, 35, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Métoclopramide 10mg', 9, 'Boîte de 20 comprimés', 2.90, 300, 0, 30, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Lopéramide 2mg', 9, 'Boîte de 12 gélules', 3.20, 280, 0, 28, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Smecta', 9, 'Boîte de 30 sachets', 4.50, 420, 0, 42, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Lactulose Sirop', 9, 'Flacon de 200ml', 5.80, 250, 0, 25, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Cough_syrup.jpg/800px-Cough_syrup.jpg'),
+('Mébévérine 135mg', 9, 'Boîte de 60 comprimés', 8.90, 200, 0, 20, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg');
 
 -- Catégorie 10: Médicaments Respiratoires
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
-('Salbutamol Spray 100mcg', 10, 'Spray de 200 doses', 6.50, 300, 0, 30, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Budésonide Spray 200mcg', 10, 'Spray de 200 doses', 12.80, 250, 0, 25, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Fluticasone Spray 125mcg', 10, 'Spray de 120 doses', 15.90, 220, 0, 22, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Tiotropium 18mcg', 10, 'Boîte de 30 gélules', 42.50, 180, 0, 18, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400'),
-('Montelukast 10mg', 10, 'Boîte de 28 comprimés', 18.90, 200, 0, 20, false, 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=400'),
-('Carbocistéine 375mg', 10, 'Boîte de 30 gélules', 4.80, 350, 0, 35, false, 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400'),
-('Acétylcystéine 600mg', 10, 'Boîte de 20 sachets', 6.20, 320, 0, 32, false, 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400'),
-('Bromhexine 8mg', 10, 'Sirop 200ml', 5.50, 280, 0, 28, false, 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400'),
-('Théophylline 200mg', 10, 'Boîte de 30 comprimés', 8.90, 150, 0, 15, false, 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400'),
-('Prednisone 20mg', 10, 'Boîte de 20 comprimés', 3.80, 400, 0, 40, false, 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400');
+('Salbutamol Spray 100mcg', 10, 'Spray de 200 doses', 6.50, 300, 0, 30, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Asthma_inhaler.jpg/800px-Asthma_inhaler.jpg'),
+('Budésonide Spray 200mcg', 10, 'Spray de 200 doses', 12.80, 250, 0, 25, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Asthma_inhaler.jpg/800px-Asthma_inhaler.jpg'),
+('Fluticasone Spray 125mcg', 10, 'Spray de 120 doses', 15.90, 220, 0, 22, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Asthma_inhaler.jpg/800px-Asthma_inhaler.jpg'),
+('Tiotropium 18mcg', 10, 'Boîte de 30 gélules', 42.50, 180, 0, 18, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Montelukast 10mg', 10, 'Boîte de 28 comprimés', 18.90, 200, 0, 20, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Carbocistéine 375mg', 10, 'Boîte de 30 gélules', 4.80, 350, 0, 35, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Capsules.jpg/800px-Capsules.jpg'),
+('Acétylcystéine 600mg', 10, 'Boîte de 20 sachets', 6.20, 320, 0, 32, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Bromhexine 8mg', 10, 'Sirop 200ml', 5.50, 280, 0, 28, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Cough_syrup.jpg/800px-Cough_syrup.jpg'),
+('Théophylline 200mg', 10, 'Boîte de 30 comprimés', 8.90, 150, 0, 15, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg'),
+('Prednisone 20mg', 10, 'Boîte de 20 comprimés', 3.80, 400, 0, 40, false, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pills_in_blister_pack.jpg/800px-Pills_in_blister_pack.jpg');
 
 -- Insertion des dispensaires
 INSERT INTO DISPENSAIRE (CODE, NOM, CONTACT, FONCTION, ADRESSE, CODE_POSTAL, VILLE, REGION, PAYS, TELEPHONE, FAX) VALUES
