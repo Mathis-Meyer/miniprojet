@@ -3,7 +3,6 @@ package pharmacie.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,11 +10,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pharmacie.dao.MedicamentRepository;
 import pharmacie.dao.FournisseurRepository;
+import pharmacie.dao.MedicamentRepository;
+import pharmacie.entity.Categorie;
 import pharmacie.entity.Fournisseur;
 import pharmacie.entity.Medicament;
-import pharmacie.entity.Categorie;
 
 @Service
 public class ApprovisionnementService {
@@ -32,86 +31,70 @@ public class ApprovisionnementService {
     @Transactional(readOnly = true)
     public String traiterReapprovisionnement() {
         try {
-            // 1. On récupère TOUS les médicaments et on filtre manuellement (100% sûr de
-            // compiler)
-            List<Medicament> tousLesMedocs = medicamentRepository.findAll();
-            List<Medicament> aCommander = tousLesMedocs.stream()
-                    .filter(m -> m.getUnitesEnStock() != null && m.getNiveauDeReappro() != null)
-                    .filter(m -> m.getUnitesEnStock() < m.getNiveauDeReappro())
-                    .collect(Collectors.toList());
+            List<Medicament> medocs = medicamentRepository.findAll();
+            List<Fournisseur> fournisseurs = fournisseurRepository.findAll();
 
-            if (aCommander.isEmpty()) {
-                return "✅ Stock OK. Aucun médicament sous le seuil d'alerte.";
-            }
+            Map<String, StringBuilder> emails = new HashMap<>();
+            int medsEnRupture = 0;
 
-            // 2. On prépare les mails groupés par fournisseur
-            List<Fournisseur> tousLesFournisseurs = fournisseurRepository.findAll();
-            Map<String, StringBuilder> emailsAPreparer = new HashMap<>();
-
-            for (Fournisseur f : tousLesFournisseurs) {
+            // On construit les mails
+            for (Fournisseur f : fournisseurs) {
                 StringBuilder corps = new StringBuilder();
-                boolean aBesoinDeCommander = false;
+                boolean fournisseurConcerne = false;
 
-                if (f.getCategories() != null) {
-                    for (Categorie cat : f.getCategories()) {
-                        boolean enteteCategorieAjoutee = false;
+                for (Categorie cat : f.getCategories()) {
+                    boolean enteteAjoutee = false;
 
-                        for (Medicament med : aCommander) {
-                            // On compare avec getLibelle() pour éviter tout problème d'ID ou de Code
-                            if (med.getCategorie() != null
-                                    && med.getCategorie().getLibelle() != null
-                                    && cat.getLibelle() != null
-                                    && med.getCategorie().getLibelle().equals(cat.getLibelle())) {
-
-                                if (!aBesoinDeCommander) {
-                                    corps.append("Bonjour ").append(f.getNom()).append(",\n\n");
-                                    corps.append("Merci de nous envoyer un devis pour les produits suivants :\n\n");
-                                    aBesoinDeCommander = true;
-                                }
-                                if (!enteteCategorieAjoutee) {
-                                    corps.append("--- ").append(cat.getLibelle()).append(" ---\n");
-                                    enteteCategorieAjoutee = true;
-                                }
-                                corps.append("- ").append(med.getNom())
-                                        .append(" (Stock: ").append(med.getUnitesEnStock())
-                                        .append(" / Seuil: ").append(med.getNiveauDeReappro()).append(")\n");
+                    for (Medicament m : medocs) {
+                        if (m.getUnitesEnStock() < m.getNiveauDeReappro()
+                                && m.getCategorie().getCode().equals(cat.getCode())) {
+                            medsEnRupture++;
+                            if (!fournisseurConcerne) {
+                                corps.append("Bonjour ").append(f.getNom())
+                                        .append(",\n\nMerci de nous envoyer un devis :\n\n");
+                                fournisseurConcerne = true;
                             }
+                            if (!enteteAjoutee) {
+                                corps.append("--- ").append(cat.getLibelle()).append(" ---\n");
+                                enteteAjoutee = true;
+                            }
+                            corps.append("- ").append(m.getNom()).append(" (Stock: ").append(m.getUnitesEnStock())
+                                    .append(")\n");
                         }
-                        if (enteteCategorieAjoutee)
-                            corps.append("\n");
                     }
+                    if (enteteAjoutee)
+                        corps.append("\n");
                 }
-
-                if (aBesoinDeCommander && f.getEmail() != null) {
-                    corps.append("Cordialement,\nLa Pharmacie ISIS.");
-                    emailsAPreparer.put(f.getEmail(), corps);
+                if (fournisseurConcerne) {
+                    emails.put(f.getEmail(), corps);
                 }
             }
 
-            // 3. Envoi des mails
-            if (emailsAPreparer.isEmpty()) {
-                return "⚠️ Stock critique détecté, mais aucun fournisseur n'est relié à ces catégories.";
+            if (medsEnRupture == 0)
+                return "✅ Stock OK. Aucun mail envoyé.";
+            if (emails.isEmpty())
+                return "⚠️ Rupture détectée, mais aucun fournisseur lié.";
+
+            // ENVOI DES MAILS AVEC INTERCEPTION DE L'ERREUR GMAIL
+            int nbMails = 0;
+            for (Map.Entry<String, StringBuilder> entry : emails.entrySet()) {
+                try {
+                    SimpleMailMessage msg = new SimpleMailMessage();
+                    msg.setTo(entry.getKey());
+                    msg.setSubject("Demande de devis - Réapprovisionnement");
+                    msg.setText(entry.getValue().toString());
+                    emailSender.send(msg);
+                    nbMails++;
+                } catch (Exception mailEx) {
+                    // SI GMAIL BLOQUE, ON AFFICHE POURQUOI AU LIEU DE FAIRE UNE ERREUR 500 !
+                    return "❌ ERREUR GMAIL (Mot de passe ou SMTP) : " + mailEx.getMessage();
+                }
             }
 
-            for (Map.Entry<String, StringBuilder> entree : emailsAPreparer.entrySet()) {
-                envoyerEmail(entree.getKey(), entree.getValue().toString());
-            }
-
-            return "🚀 Succès ! " + emailsAPreparer.size() + " emails récapitulatifs envoyés.";
+            return "🚀 Succès ! " + nbMails + " emails envoyés.";
 
         } catch (Exception e) {
-            // Si ça plante, on affiche la VRAIE erreur sur ton écran au lieu d'une erreur
-            // 500 !
-            e.printStackTrace();
-            return "❌ Erreur Java interne (Koyeb) : " + e.toString();
+            return "❌ ERREUR CODE : " + e.getMessage();
         }
-    }
-
-    private void envoyerEmail(String destinataire, String texte) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(destinataire);
-        message.setSubject("URGENT - Demande de devis réapprovisionnement");
-        message.setText(texte);
-        emailSender.send(message);
     }
 }
