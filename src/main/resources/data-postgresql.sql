@@ -16,8 +16,6 @@ ALTER SEQUENCE categorie_code_seq RESTART WITH 11;
 
 -- Catégorie 1: Antalgiques et Antipyrétiques
 INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
--- Catégorie 1: Antalgiques et Antipyrétiques
-INSERT INTO MEDICAMENT (NOM, CATEGORIE_CODE, QUANTITE_PAR_UNITE, PRIX_UNITAIRE, UNITES_EN_STOCK, UNITES_COMMANDEES, NIVEAU_DE_REAPPRO, INDISPONIBLE, imageURL) VALUES
 ('Paracétamol 500mg', 1, 'Boîte de 16 comprimés', 2.50, 55, 0, 50, false, 'https://raw.githubusercontent.com/Mathis-Meyer/miniprojet/refs/heads/main/src/main/resources/static/images/paracetamol_500.jpg'),
 ('Paracétamol 1000mg', 1, 'Boîte de 8 comprimés', 3.20, 24, 0, 40, false, 'https://raw.githubusercontent.com/Mathis-Meyer/miniprojet/refs/heads/main/src/main/resources/static/images/paracetamol_1000.jpg'),
 ('Ibuprofène 200mg', 1, 'Boîte de 20 comprimés', 3.80, 382, 0, 45, false, 'https://raw.githubusercontent.com/Mathis-Meyer/miniprojet/refs/heads/main/src/main/resources/static/images/ibuprofene_200.jpg'),
