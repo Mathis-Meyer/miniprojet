@@ -71,9 +71,9 @@ public class ApprovisionnementService {
             }
 
             if (medsEnRupture == 0)
-                return "✅ Stock OK. Aucun mail envoyé.";
+                return " Stock OK. Aucun mail envoyé.";
             if (emails.isEmpty())
-                return "⚠️ Rupture détectée, mais aucun fournisseur lié.";
+                return "Rupture détectée, mais aucun fournisseur lié.";
 
             // ENVOI DES MAILS AVEC INTERCEPTION DE L'ERREUR GMAIL
             int nbMails = 0;
@@ -87,14 +87,14 @@ public class ApprovisionnementService {
                     nbMails++;
                 } catch (Exception mailEx) {
                     // SI GMAIL BLOQUE, ON AFFICHE POURQUOI AU LIEU DE FAIRE UNE ERREUR 500 !
-                    return "❌ ERREUR GMAIL (Mot de passe ou SMTP) : " + mailEx.getMessage();
+                    return "ERREUR GMAIL (Mot de passe ou SMTP) : " + mailEx.getMessage();
                 }
             }
 
-            return "🚀 Succès ! " + nbMails + " emails envoyés.";
+            return " Succès ! " + nbMails + " emails envoyés.";
 
         } catch (Exception e) {
-            return "❌ ERREUR CODE : " + e.getMessage();
+            return "ERREUR CODE : " + e.getMessage();
         }
     }
 }
