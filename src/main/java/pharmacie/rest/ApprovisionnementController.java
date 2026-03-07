@@ -1,22 +1,26 @@
 package pharmacie.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin; // N'oublie pas l'import !
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pharmacie.service.ApprovisionnementService;
 
-@CrossOrigin(origins = "*") // Autorise StackBlitz à appeler cette API
 @RestController
+@RequestMapping("/api")
+// ⚠️ LA CORRECTION EST ICI : On utilise originPatterns au lieu de origins="*"
+@CrossOrigin(originPatterns = "*", allowCredentials = "true")
 public class ApprovisionnementController {
 
     @Autowired
-    private ApprovisionnementService service;
+    private ApprovisionnementService approvisionnementService;
 
-    // L'adresse pour déclencher le robot
-    @GetMapping("/api/reappro")
-    public String lancerLeReappro() {
-        return service.traiterReapprovisionnement();
+    @GetMapping("/reappro")
+    public ResponseEntity<String> lancerLeReappro() {
+        String resultat = approvisionnementService.traiterReapprovisionnement();
+        return ResponseEntity.ok(resultat);
     }
 }
