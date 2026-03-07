@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import pharmacie.dao.FournisseurRepository;
 import pharmacie.dao.MedicamentRepository;
+import pharmacie.entity.Categorie;
 import pharmacie.entity.Fournisseur;
 import pharmacie.entity.Medicament;
 
@@ -20,62 +23,79 @@ public class ApprovisionnementService {
     private MedicamentRepository medicamentRepository;
 
     @Autowired
-    private JavaMailSender emailSender; // C'est le facteur de Spring Boot
+    private FournisseurRepository fournisseurRepository;
 
+    @Autowired
+    private JavaMailSender emailSender;
+
+    @Transactional(readOnly = true) // Important pour garder la session SQL ouverte
     public String traiterReapprovisionnement() {
-        // 1. Récupérer les médicaments en rupture
+        // 1. Récupérer les médicaments en rupture (Stock < NiveauReappro)
         List<Medicament> aCommander = medicamentRepository.findMedicamentsACommander();
 
         if (aCommander.isEmpty()) {
-            return "✅ Stock OK. Aucun mail envoyé.";
+            return "✅ Stock OK. Aucun médicament sous le seuil d'alerte.";
         }
 
-        // 2. Regrouper les médicaments par fournisseur
-        // On crée une boîte pour chaque adresse email : "email" -> "texte du mail"
-        Map<String, StringBuilder> boiteAuxLettres = new HashMap<>();
+        // 2. Récupérer tous les fournisseurs pour être sûr d'avoir leurs catégories
+        List<Fournisseur> tousLesFournisseurs = fournisseurRepository.findAll();
 
-        for (Medicament med : aCommander) {
-            // Pour chaque médicament, on regarde qui peut le fournir
-            for (Fournisseur f : med.getCategorie().getFournisseurs()) {
-                String emailFournisseur = f.getEmail();
+        // On prépare une boîte aux lettres : "Email" -> "Contenu du mail"
+        Map<String, StringBuilder> emailsAPreparer = new HashMap<>();
 
-                // Si c'est la première fois qu'on voit ce fournisseur, on prépare son brouillon
-                boiteAuxLettres.putIfAbsent(emailFournisseur, new StringBuilder());
-                StringBuilder brouillon = boiteAuxLettres.get(emailFournisseur);
+        for (Fournisseur f : tousLesFournisseurs) {
+            StringBuilder corps = new StringBuilder();
+            boolean aBesoinDeCommander = false;
 
-                // Si le brouillon est vide, on met la formule de politesse
-                if (brouillon.length() == 0) {
-                    brouillon.append("Bonjour ").append(f.getNom()).append(",\n\n");
-                    brouillon.append("Merci de nous envoyer un devis pour les produits suivants :\n");
+            // On regarde chaque catégorie du fournisseur
+            for (Categorie cat : f.getCategories()) {
+                boolean enteteCategorieAjoutee = false;
+
+                // On regarde si un des médicaments en rupture appartient à cette catégorie
+                for (Medicament med : aCommander) {
+                    if (med.getCategorie().getCode().equals(cat.getCode())) {
+                        if (!aBesoinDeCommander) {
+                            corps.append("Bonjour ").append(f.getNom()).append(",\n\n");
+                            corps.append("Merci de nous envoyer un devis pour les produits suivants :\n\n");
+                            aBesoinDeCommander = true;
+                        }
+                        if (!enteteCategorieAjoutee) {
+                            corps.append("--- ").append(cat.getLibelle()).append(" ---\n");
+                            enteteCategorieAjoutee = true;
+                        }
+                        corps.append("- ").append(med.getNom())
+                                .append(" (Stock: ").append(med.getUnitesEnStock())
+                                .append(" / Seuil: ").append(med.getNiveauDeReappro()).append(")\n");
+                    }
                 }
+                if (enteteCategorieAjoutee)
+                    corps.append("\n");
+            }
 
-                // On ajoute la ligne du médicament
-                brouillon.append("- ").append(med.getNom())
-                         .append(" (Catégorie: ").append(med.getCategorie().getLibelle()).append(")")
-                         .append(" [Stock actuel: ").append(med.getUnitesEnStock()).append("]\n");
+            if (aBesoinDeCommander) {
+                corps.append("Cordialement,\nLa Pharmacie ISIS.");
+                emailsAPreparer.put(f.getEmail(), corps);
             }
         }
 
-        // 3. Envoyer les mails pour de vrai
-        int nombreMailsEnvoyes = 0;
-        for (Map.Entry<String, StringBuilder> courrier : boiteAuxLettres.entrySet()) {
-            String destinataire = courrier.getKey();
-            String corpsDuMessage = courrier.getValue().toString();
-            
-            envoyerEmail(destinataire, corpsDuMessage);
-            nombreMailsEnvoyes++;
+        // 3. Envoi effectif
+        if (emailsAPreparer.isEmpty()) {
+            return "Stock critique détecté, mais aucun fournisseur n'est rattaché à ces catégories.";
         }
 
-        return "🚀 Succès ! " + nombreMailsEnvoyes + " emails ont été envoyés aux fournisseurs.";
+        for (Map.Entry<String, StringBuilder> entree : emailsAPreparer.entrySet()) {
+            envoyerEmail(entree.getKey(), entree.getValue().toString());
+        }
+
+        return "🚀 Succès ! " + emailsAPreparer.size() + " emails récapitulatifs envoyés aux fournisseurs.";
     }
 
-    // Petite méthode utilitaire pour envoyer un mail simple
     private void envoyerEmail(String destinataire, String texte) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(destinataire);
-        message.setSubject("Demande de réapprovisionnement - Pharmacie");
+        message.setSubject("URGENT - Demande de devis réapprovisionnement");
         message.setText(texte);
-        emailSender.send(message); // L'envoi part ici !
-        System.out.println("📨 Email envoyé à : " + destinataire);
+        emailSender.send(message);
+        System.out.println("📨Email envoyé à : " + destinataire);
     }
 }
