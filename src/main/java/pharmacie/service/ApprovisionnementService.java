@@ -3,6 +3,7 @@ package pharmacie.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -10,11 +11,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pharmacie.dao.FournisseurRepository;
 import pharmacie.dao.MedicamentRepository;
-import pharmacie.entity.Categorie;
+import pharmacie.dao.FournisseurRepository;
 import pharmacie.entity.Fournisseur;
 import pharmacie.entity.Medicament;
+import pharmacie.entity.Categorie;
 
 @Service
 public class ApprovisionnementService {
@@ -28,66 +29,82 @@ public class ApprovisionnementService {
     @Autowired
     private JavaMailSender emailSender;
 
-    @Transactional(readOnly = true) // Important pour garder la session SQL ouverte
+    @Transactional(readOnly = true)
     public String traiterReapprovisionnement() {
-        // 1. Récupérer les médicaments en rupture (Stock < NiveauReappro)
-        List<Medicament> aCommander = medicamentRepository.findMedicamentsACommander();
+        try {
+            // 1. On récupère TOUS les médicaments et on filtre manuellement (100% sûr de
+            // compiler)
+            List<Medicament> tousLesMedocs = medicamentRepository.findAll();
+            List<Medicament> aCommander = tousLesMedocs.stream()
+                    .filter(m -> m.getUnitesEnStock() != null && m.getNiveauDeReappro() != null)
+                    .filter(m -> m.getUnitesEnStock() < m.getNiveauDeReappro())
+                    .collect(Collectors.toList());
 
-        if (aCommander.isEmpty()) {
-            return "✅ Stock OK. Aucun médicament sous le seuil d'alerte.";
-        }
+            if (aCommander.isEmpty()) {
+                return "✅ Stock OK. Aucun médicament sous le seuil d'alerte.";
+            }
 
-        // 2. Récupérer tous les fournisseurs pour être sûr d'avoir leurs catégories
-        List<Fournisseur> tousLesFournisseurs = fournisseurRepository.findAll();
+            // 2. On prépare les mails groupés par fournisseur
+            List<Fournisseur> tousLesFournisseurs = fournisseurRepository.findAll();
+            Map<String, StringBuilder> emailsAPreparer = new HashMap<>();
 
-        // On prépare une boîte aux lettres : "Email" -> "Contenu du mail"
-        Map<String, StringBuilder> emailsAPreparer = new HashMap<>();
+            for (Fournisseur f : tousLesFournisseurs) {
+                StringBuilder corps = new StringBuilder();
+                boolean aBesoinDeCommander = false;
 
-        for (Fournisseur f : tousLesFournisseurs) {
-            StringBuilder corps = new StringBuilder();
-            boolean aBesoinDeCommander = false;
+                if (f.getCategories() != null) {
+                    for (Categorie cat : f.getCategories()) {
+                        boolean enteteCategorieAjoutee = false;
 
-            // On regarde chaque catégorie du fournisseur
-            for (Categorie cat : f.getCategories()) {
-                boolean enteteCategorieAjoutee = false;
+                        for (Medicament med : aCommander) {
+                            // On compare avec getLibelle() pour éviter tout problème d'ID ou de Code
+                            if (med.getCategorie() != null
+                                    && med.getCategorie().getLibelle() != null
+                                    && cat.getLibelle() != null
+                                    && med.getCategorie().getLibelle().equals(cat.getLibelle())) {
 
-                // On regarde si un des médicaments en rupture appartient à cette catégorie
-                for (Medicament med : aCommander) {
-                    if (med.getCategorie().getCode().equals(cat.getCode())) {
-                        if (!aBesoinDeCommander) {
-                            corps.append("Bonjour ").append(f.getNom()).append(",\n\n");
-                            corps.append("Merci de nous envoyer un devis pour les produits suivants :\n\n");
-                            aBesoinDeCommander = true;
+                                if (!aBesoinDeCommander) {
+                                    corps.append("Bonjour ").append(f.getNom()).append(",\n\n");
+                                    corps.append("Merci de nous envoyer un devis pour les produits suivants :\n\n");
+                                    aBesoinDeCommander = true;
+                                }
+                                if (!enteteCategorieAjoutee) {
+                                    corps.append("--- ").append(cat.getLibelle()).append(" ---\n");
+                                    enteteCategorieAjoutee = true;
+                                }
+                                corps.append("- ").append(med.getNom())
+                                        .append(" (Stock: ").append(med.getUnitesEnStock())
+                                        .append(" / Seuil: ").append(med.getNiveauDeReappro()).append(")\n");
+                            }
                         }
-                        if (!enteteCategorieAjoutee) {
-                            corps.append("--- ").append(cat.getLibelle()).append(" ---\n");
-                            enteteCategorieAjoutee = true;
-                        }
-                        corps.append("- ").append(med.getNom())
-                                .append(" (Stock: ").append(med.getUnitesEnStock())
-                                .append(" / Seuil: ").append(med.getNiveauDeReappro()).append(")\n");
+                        if (enteteCategorieAjoutee)
+                            corps.append("\n");
                     }
                 }
-                if (enteteCategorieAjoutee)
-                    corps.append("\n");
+
+                if (aBesoinDeCommander && f.getEmail() != null) {
+                    corps.append("Cordialement,\nLa Pharmacie ISIS.");
+                    emailsAPreparer.put(f.getEmail(), corps);
+                }
             }
 
-            if (aBesoinDeCommander) {
-                corps.append("Cordialement,\nLa Pharmacie ISIS.");
-                emailsAPreparer.put(f.getEmail(), corps);
+            // 3. Envoi des mails
+            if (emailsAPreparer.isEmpty()) {
+                return "⚠️ Stock critique détecté, mais aucun fournisseur n'est relié à ces catégories.";
             }
-        }
 
-        // 3. Envoi effectif
-        if (emailsAPreparer.isEmpty()) {
-            return "Stock critique détecté, mais aucun fournisseur n'est rattaché à ces catégories.";
-        }
+            for (Map.Entry<String, StringBuilder> entree : emailsAPreparer.entrySet()) {
+                envoyerEmail(entree.getKey(), entree.getValue().toString());
+            }
 
-        for (Map.Entry<String, StringBuilder> entree : emailsAPreparer.entrySet()) {
-            envoyerEmail(entree.getKey(), entree.getValue().toString());
-        }
+            return "🚀 Succès ! " + emailsAPreparer.size() + " emails récapitulatifs envoyés.";
 
-        return "🚀 Succès ! " + emailsAPreparer.size() + " emails récapitulatifs envoyés aux fournisseurs.";
+        } catch (Exception e) {
+            // Si ça plante, on affiche la VRAIE erreur sur ton écran au lieu d'une erreur
+            // 500 !
+            e.printStackTrace();
+            return "❌ Erreur Java interne (Koyeb) : " + e.toString();
+        }
     }
 
     private void envoyerEmail(String destinataire, String texte) {
@@ -96,6 +113,5 @@ public class ApprovisionnementService {
         message.setSubject("URGENT - Demande de devis réapprovisionnement");
         message.setText(texte);
         emailSender.send(message);
-        System.out.println("📨Email envoyé à : " + destinataire);
     }
 }
